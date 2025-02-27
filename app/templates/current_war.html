@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Guerra em Andamento{% endblock %}
+
+{% block content %}
+<h1>Guerra em Andamento</h1>
+
+<h2>Membros do Clã</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tag</th>
+            <th>Nome</th>
+            <th>Posição</th>
+            <th>Ataques</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in clan_members %}
+        <tr>
+            <td>{{ member.tag }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.mapPosition }}</td>
+            <td>
+                {% if member.attacks %}
+                    <ul>
+                    {% for attack in member.attacks %}
+                        <li>
+                            vs {{ attack.defenderTag }} (Estrelas: {{attack.stars}}, Destruição: {{ attack.destructionPercentage}}%)
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    Nenhum ataque
+                {% endif %}
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Membros que Não Atacaram</h2>
+<ul>
+{% for member in not_attacked %}
+    <li>{{ member.name }} ({{ member.tag }})</li>
+{% endfor %}
+</ul>
+
+
+<h2>Membros do Oponente</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tag</th>
+            <th>Nome</th>
+            <th>Posição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in opponent_members %}
+        <tr>
+            <td>{{ member.tag }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.mapPosition }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

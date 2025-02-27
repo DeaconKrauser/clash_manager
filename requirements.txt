@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Login
+Flask-WTF
+psycopg2-binary  # Ou psycopg2, se você tiver o PostgreSQL instalado
+python-dotenv
+requests
+schedule
+gunicorn

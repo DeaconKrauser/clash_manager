@@ -1,0 +1,7 @@
+.env
+__pycache__/
+.venv/
+migrations/versions/*.py
+migrations/versions/*.pyc
+*.pyc
+*.db  # Se você tiver arquivos de banco de dados SQLite locais

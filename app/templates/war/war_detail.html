@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes da Guerra{% endblock %}
+
+{% block content %}
+<h1>Detalhes da Guerra: {{ format_war_id(war.war_id) }}</h1>
+
+<div class="row">  <!-- Adiciona uma linha -->
+    <div class="col-md-6">  <!-- Coluna para as informações da guerra -->
+        <p>
+            <strong>Clã:</strong> {{ war.clan_tag }}<br>
+            <strong>Oponente:</strong> {{ war.opponent_tag }}<br>
+            <strong>Resultado:</strong> {{ war.result }}<br>
+            <strong>Estrelas (Clã):</strong> {{ war.clan_stars }}<br>
+            <strong>Estrelas (Oponente):</strong> {{ war.opponent_stars }}<br>
+            <strong>Data de Início (Preparação):</strong> {{ format_date(war.preparation_start_time) }}<br>
+            <strong>Data de Início (Batalha):</strong> {{ format_date(war.start_time) }}<br>
+            <strong>Data de Término:</strong> {{ format_date(war.end_time) }}<br>
+            <strong>Tamanho do Time:</strong> {{ war.team_size }}
+        </p>
+    </div>
+    <div class="col-md-6">  <!-- Coluna para o botão -->
+         <!-- Botão de Estatísticas -->
+        <a href="{{ url_for('war.war_stats', war_id=war.war_id) }}" class="btn btn-info">Estatísticas da Guerra</a>
+    </div>
+</div>
+
+
+<h2>Ataques</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Atacante</th>
+            <th>Defensor</th>
+            <th>Posição Atacante</th>
+            <th>Posição Defensor</th>
+            <th>Estrelas</th>
+            <th>Destruição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attack in attacks %}
+        <tr>
+            <td>{{ attack.player_tag }}</td>
+            <td>{{ attack.defender_tag }}</td>
+            <td>{{ attack.player_position }}</td>
+            <td>{{ attack.defender_position }}</td>
+            <td>{{ attack.stars }}</td>
+            <td>{{ attack.destruction }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

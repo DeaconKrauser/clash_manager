@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+    <h1>Bem-vindo ao Clash Manager!</h1>
+
+    {% if clan %}
+        <h2>Informações do Clã: {{ clan.name }} ({{ clan.clan_tag }})</h2>
+    {% else %}
+        <p>Nenhum clã configurado.</p>
+    {% endif %}
+
+
+    <div class="row">
+        <!-- Card para Última Guerra -->
+        {% if last_war %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Última Guerra</h5>
+                    <p class="card-text">
+                        <strong>ID:</strong> {{ format_war_id(last_war.war_id) }}<br>
+                        <strong>Resultado:</strong> {{ last_war.result }}<br>
+                        <strong>Data de Término:</strong> {{ format_date(last_war.end_time) }}
+                    </p>
+                    <a href="{{ url_for('war.war_detail', war_id=last_war.war_id) }}" class="btn btn-primary">Detalhes</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+         <!-- Card para Maior Doador-->
+        {% if top_donator %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Maior Doador</h5>
+                    <p><strong>Nome:</strong>{{top_donator.name}}</p>
+                    <p><strong>Tag:</strong>{{top_donator.player_tag}}</p>
+                    <p><strong>Doou: </strong>{{top_donator.donations}}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+         <!-- Card para Menor Doador-->
+        {% if least_donator %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Menor Doador</h5>
+                    <p><strong>Nome:</strong>{{least_donator.name}}</p>
+                    <p><strong>Tag:</strong>{{least_donator.player_tag}}</p>
+                    <p><strong>Doou: </strong>{{least_donator.donations}}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Card para quem recebeu mais doações -->
+        {% if top_receiver %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mais Recebeu Doações</h5>
+                   <p><strong>Nome:</strong>{{top_receiver.name}}</p>
+                    <p><strong>Tag:</strong>{{top_receiver.player_tag}}</p>
+                    <p><strong>Recebeu: </strong>{{top_receiver.donations_received}}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Card para quem recebeu menos doações -->
+        {% if least_receiver %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Menos Recebeu Doações</h5>
+                   <p><strong>Nome:</strong>{{least_receiver.name}}</p>
+                    <p><strong>Tag:</strong>{{least_receiver.player_tag}}</p>
+                    <p><strong>Recebeu: </strong>{{least_receiver.donations_received}}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+     <h2>Membros do Clã</h2>
+    <div class="row">
+        {% for member in members %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ member.name }}</h5>
+                    <p class="card-text">
+                        <strong>Tag:</strong> {{ member.player_tag }}<br>
+                        <strong>Nível do CV:</strong> {{ member.townhall_level }}<br>
+                        <strong>Troféus:</strong> {{ member.trophies }}
+                        <!-- Adicione outras informações do membro aqui -->
+                    </p>
+                    <a href="{{ url_for('players.player', player_tag=member.player_tag) }}" class="btn btn-primary">Ver Perfil</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

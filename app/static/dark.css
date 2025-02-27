@@ -1,0 +1,13 @@
+/* Estilos para o tema escuro */
+body {
+    background-color: #333;
+    color: #fff;
+}
+.navbar{
+    background-color: #222 !important;
+}
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+    color: #fff; /* Cor do texto na navbar escura */
+}
+
+/* Adicione outros estilos para o tema escuro aqui */

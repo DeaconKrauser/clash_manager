@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Guerras{% endblock %}
+
+{% block content %}
+    <h1>Lista de Guerras</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID da Guerra</th>
+                <th>Clã</th>
+                <th>Oponente</th>
+                <th>Resultado</th>
+                <th>Estrelas (Clã)</th>
+                <th>Estrelas (Oponente)</th>
+                <th>Data de Término</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for war in wars %}  <!-- Loop for correto AQUI -->
+            <tr>
+                <td>{{ format_war_id(war.war_id) }}</td>
+                <td>{{ war.clan_tag }}</td>
+                <td>{{ war.opponent_tag }}</td>
+                <td>{{ war.result }}</td>
+                <td>{{ war.clan_stars }}</td>
+                <td>{{ war.opponent_stars }}</td>
+                <td>{{ format_date(war.end_time) }}</td>
+                <td>
+                    <a href="{{ url_for('war.war_detail', war_id=war.war_id) }}" class="btn btn-primary btn-sm">Detalhes</a>
+                </td>
+            </tr>
+            {% endfor %}  <!-- Fechamento do loop for AQUI -->
+        </tbody>
+    </table>
+{% endblock %}

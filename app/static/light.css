@@ -1,0 +1,11 @@
+/* Estilos para o tema claro */
+body {
+    background-color: #fff;
+    color: #333;
+}
+.navbar{
+    background-color: #f8f9fa !important;
+}
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+    color: #333; /* Cor do texto na navbar clara */
+}

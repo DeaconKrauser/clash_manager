@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Estatísticas da Guerra{% endblock %}
+
+{% block content %}
+    <h1>Estatísticas da Guerra: {{ format_war_id(war.war_id) }}</h1>
+
+    <!-- Iframe para o aplicativo Streamlit -->
+    <iframe src="http://localhost:8501/?war_id={{ war_id }}" width="100%" height="800" frameborder="0"></iframe>
+
+{% endblock %}

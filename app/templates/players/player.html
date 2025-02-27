@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Jogador{% endblock %}
+
+{% block content %}
+<h1>Detalhes do Jogador: {{ player.name }}</h1>
+
+<p>
+    <strong>Tag:</strong> {{ player.player_tag }}<br>
+    <strong>Nome:</strong> {{ player.name }}<br>
+    <strong>Nível do CV:</strong> {{ player.townhall_level }}<br>
+    <strong>Nível de EXP:</strong> {{ player.exp_level }}<br>
+    <strong>Troféus:</strong> {{ player.trophies }}<br>
+    <strong>Melhor Troféus:</strong> {{ player.best_trophies }}<br>
+    <strong>Estrelas de Guerra:</strong> {{ player.war_stars }}<br>
+    <strong>Doações:</strong> {{ player.donations }}<br>
+    <strong>Doações Recebidas:</strong> {{ player.donations_received }}<br>
+</p>
+
+{% endblock %}
